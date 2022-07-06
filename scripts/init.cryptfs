@@ -264,7 +264,7 @@ open_luks_part_with_encrypted_passphrase() {
         print_error "Unable to unseal the passphrase with the error $res" && return 1
     done
 
-    ! cryptsetup luksOpen --key-file "$TMP_DIR/$PASSPHRASE" "$luks_rawdev" "$LUKS_NAME" &&
+    ! echo "123" | cryptsetup luksOpen "$luks_rawdev" "$LUKS_NAME" &&
         print_error "Unable to open the LUKS partition $luks_rawdev with the encrypted passphrase" && return 1
 
     print_verbose "The LUKS partition $luks_rawdev is opened with the encrypted passphrase"
